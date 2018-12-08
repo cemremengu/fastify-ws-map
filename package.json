@@ -1,6 +1,6 @@
 {
   "name": "fastify-ws-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A (very) opinionated plugin for adding [ws](https://github.com/websockets/ws) support for Fastify",
   "main": "plugin.js",
   "scripts": {
