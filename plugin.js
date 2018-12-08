@@ -7,7 +7,7 @@ const url = require('url')
 function fastifyWebSocketMap (fastify, options, next) {
   const opts = Object.assign(options, { server: fastify.server })
   const wss = new WebSocketServer(opts)
-  const sockets = new Map()
+  const websockets = new Map()
 
   wss.on('connection', (ws, req) => {
     const path = req.url || ''
@@ -17,11 +17,11 @@ function fastifyWebSocketMap (fastify, options, next) {
     if (token == null) {
       return ws.terminate()
     }
-    sockets.set(token, ws)
-    ws.on('close', () => sockets.delete(token))
+    websockets.set(token, ws)
+    ws.on('close', () => websockets.delete(token))
   })
 
-  fastify.decorate('sockets', sockets)
+  fastify.decorate('websockets', websockets)
 
   fastify.addHook('onClose', (fastify, done) => wss.close(done))
 

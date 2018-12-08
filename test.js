@@ -28,7 +28,7 @@ test('client should register with a token and receive message', (t) => {
     }
 
     client.on('open', () => {
-      fastify.sockets.get(token).send('hello client')
+      fastify.websockets.get(token).send('hello client')
     })
   })
 })
@@ -52,7 +52,7 @@ test('client should not be able to register without a token', (t) => {
     }
 
     client.on('open', () => {
-      t.equal(fastify.sockets.get(token), undefined)
+      t.equal(fastify.websockets.get(token), undefined)
     })
   })
 })
